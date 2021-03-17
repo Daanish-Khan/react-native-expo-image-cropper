@@ -8,7 +8,7 @@ import {
     Text,
     SafeAreaView,
     TouchableOpacity,
-    YellowBox
+    LogBox
 } from 'react-native'
 import * as ImageManipulator from 'expo-image-manipulator'
 import * as FileSystem from 'expo-file-system'
@@ -20,8 +20,8 @@ import ImageCropOverlay from '../manipulator/ImageCropOverlay'
 
 const { width, height } = Dimensions.get('window')
 
-YellowBox.ignoreWarnings(['componentWillReceiveProps', 'componentWillUpdate', 'componentWillMount']);
-YellowBox.ignoreWarnings([
+LogBox.ignoreLogs(['componentWillReceiveProps', 'componentWillUpdate', 'componentWillMount']);
+LogBox.ignoreLogs([
     'Warning: componentWillMount is deprecated',
     'Warning: componentWillReceiveProps is deprecated',
     'Module RCTImageLoader requires',
@@ -56,6 +56,13 @@ class ExpoImageManipulator extends Component {
         }
 
         this.actualSize = {
+            width: 0,
+            height: 0
+        }
+
+        this.selectionRect = {
+            x: 0,
+            y: 0,
             width: 0,
             height: 0
         }
@@ -111,6 +118,11 @@ class ExpoImageManipulator extends Component {
 
                 this.actualSize.width = croppedWidth
                 this.actualSize.height = croppedHeight
+
+                this.selectionRect.x = cropObj.originX;
+                this.selectionRect.y = cropObj.originY;
+                this.selectionRect.height = croppedHeight
+                this.selectionRect.width = croppedWidth;
 
                 this.setState({
                     uri: uriCroped, base64, cropMode: false, processing: false,
@@ -288,6 +300,8 @@ class ExpoImageManipulator extends Component {
             zoomScale
         } = this.state
 
+        const selectionRect = this.selectionRect;
+
         let imageRatio = this.actualSize.height / this.actualSize.width
         var originalHeight = Dimensions.get('window').height - 64
         if (isIphoneX()) {
@@ -346,7 +360,7 @@ class ExpoImageManipulator extends Component {
                                         <TouchableOpacity onPress={() => this.onFlipImage('horizontal')} style={{marginLeft: 10, width: 32, height: 32, alignItems: 'center', justifyContent: 'center'}}>
                                             <Image source={require('../assets/flip-horizontal.png')} style={{width: 24, height: 24}}></Image>
                                         </TouchableOpacity>
-                                        <TouchableOpacity onPress={() => {onPictureChoosed({ uri, base64 }); this.onToggleModal()}} style={{marginLeft: 10, width: 60, height: 32, alignItems: 'center', justifyContent: 'center'}}>
+                                        <TouchableOpacity onPress={() => {onPictureChoosed({ uri, base64, selectionRect }); this.onToggleModal()}} style={{marginLeft: 10, width: 60, height: 32, alignItems: 'center', justifyContent: 'center'}}>
                                             <Text style={{fontWeight: '500', color: 'white', fontSize: 18}}>{'DONE'}</Text>                                
                                         </TouchableOpacity>
                                     </View>
@@ -410,7 +424,7 @@ class ExpoImageManipulator extends Component {
 export default ExpoImageManipulator
 
 ExpoImageManipulator.defaultProps = {
-    onPictureChoosed: ({ uri, base64 }) => console.log('URI:', uri, base64),
+    onPictureChoosed: ({ uri, base64, selectionRect }) => console.log('URI:', uri, base64),
     btnTexts: {
         crop: 'Crop',
         rotate: 'Rotate',
