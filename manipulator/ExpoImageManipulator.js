@@ -118,7 +118,7 @@ class ExpoImageManipulator extends Component {
 
                 this.actualSize.width = this.selectionRect.width = croppedWidth
                 this.actualSize.height = this.selectionRect.height = croppedHeight
-
+                
                 this.setState({
                     uri: uriCroped, base64, cropMode: false, processing: false,
                 })
@@ -394,9 +394,10 @@ class ExpoImageManipulator extends Component {
                             // pinchGestureEnabled={cropMode ? false : pinchGestureEnabled}
                         >
                             <AutoHeightImage
-                                style={{ backgroundColor: 'black' }}
+                                style={{ backgroundColor: 'black', resizeMode: "contain" }}
                                 source={{ uri }}
-                                resizeMode={imageRatio >= 1 ? "contain" : 'contain'}
+                                resizeMode="contain"
+                                resizeMode="resize"
                                 width={width}
                                 height={originalHeight}
                                 onLayout={this.calculateMaxSizes}
