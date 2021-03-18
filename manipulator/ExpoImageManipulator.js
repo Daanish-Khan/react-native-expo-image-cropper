@@ -397,7 +397,7 @@ class ExpoImageManipulator extends Component {
                                 style={{ backgroundColor: 'black', resizeMode: "contain" }}
                                 source={{ uri }}
                                 resizeMode="contain"
-                                resizeMode="resize"
+                                resizeMethod="resize"
                                 width={width}
                                 height={originalHeight}
                                 onLayout={this.calculateMaxSizes}
