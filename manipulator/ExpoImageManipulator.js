@@ -393,9 +393,9 @@ class ExpoImageManipulator extends Component {
                             // scrollEnabled={cropMode ? false : true}
                             // pinchGestureEnabled={cropMode ? false : pinchGestureEnabled}
                         >
-                            <AutoHeightImage
+                            <Image
                                 style={{ backgroundColor: 'black', resizeMode: "contain" }}
-                                source={{ }}
+                                source={{ uri }}
                                 width={width}
                                 height={originalHeight}
                                 onLayout={this.calculateMaxSizes}
