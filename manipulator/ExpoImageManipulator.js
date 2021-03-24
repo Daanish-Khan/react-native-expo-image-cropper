@@ -375,7 +375,7 @@ class ExpoImageManipulator extends Component {
                             }
                         </ScrollView>
                     </SafeAreaView>
-                    <View style={{ flex: 1, backgroundColor: 'black' , width: Dimensions.get('window').width, justifyContent: "center", alignItems: "center" }}>
+                    <View style={{ flex: 1, backgroundColor: 'black' , width: Dimensions.get('window').width }}>
                         <ScrollView
                             ref={'imageScrollView'}
                             style={{ position: 'relative', flex: 1}}
