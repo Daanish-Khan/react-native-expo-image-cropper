@@ -379,7 +379,7 @@ class ExpoImageManipulator extends Component {
                         <ScrollView
                             ref={'imageScrollView'}
                             style={{ position: 'relative', flex: 1}}
-                            contentContainerStyle={{backgroundColor: 'black'}}
+                            contentContainerStyle={{backgroundColor: 'black', justifyContent: "center"}}
                             maximumZoomScale={5}
                             minimumZoomScale={0.5}
                             onScroll={this.onHandleScroll}
@@ -393,7 +393,7 @@ class ExpoImageManipulator extends Component {
                             // scrollEnabled={cropMode ? false : true}
                             // pinchGestureEnabled={cropMode ? false : pinchGestureEnabled}
                         >
-                            <Image
+                            <AutoHeightImage
                                 style={{ backgroundColor: 'black', resizeMode: "contain" }}
                                 source={{ uri }}
                                 width={width}
