@@ -375,7 +375,7 @@ class ExpoImageManipulator extends Component {
                             }
                         </ScrollView>
                     </SafeAreaView>
-                    <View style={{ flex: 1, backgroundColor: 'black' , width: Dimensions.get('window').width }}>
+                    <View style={{ flex: 1, backgroundColor: 'black' , width: Dimensions.get('window').width, justifyContent: "center", alignItems: "center" }}>
                         <ScrollView
                             ref={'imageScrollView'}
                             style={{ position: 'relative', flex: 1}}
@@ -396,8 +396,6 @@ class ExpoImageManipulator extends Component {
                             <AutoHeightImage
                                 style={{ backgroundColor: 'black', resizeMode: "contain" }}
                                 source={{ uri }}
-                                resizeMode="contain"
-                                resizeMethod="resize"
                                 width={width}
                                 height={originalHeight}
                                 onLayout={this.calculateMaxSizes}
