@@ -68,7 +68,7 @@ class ExpoImageManipulator extends Component {
         }
 
         this.renderedImage = {
-            wdith: 0,
+            width: 0,
             height: 0
         }
     }
@@ -305,6 +305,7 @@ class ExpoImageManipulator extends Component {
         } = this.state
 
         const selectionRect = this.selectionRect;
+        const renderedImage = this.renderedImage;
 
         let imageRatio = this.actualSize.height / this.actualSize.width
         var originalHeight = Dimensions.get('window').height - 64
