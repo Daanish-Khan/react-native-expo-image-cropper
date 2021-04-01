@@ -91,7 +91,9 @@ class ExpoImageManipulator extends Component {
             uri,
         })
         this.actualSize.width = width
+        this.renderedImage.width = width
         this.actualSize.height = height
+        this.renderedImage.height = height
     }
 
     get isRemote() {
