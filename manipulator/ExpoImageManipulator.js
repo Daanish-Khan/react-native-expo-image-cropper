@@ -66,6 +66,11 @@ class ExpoImageManipulator extends Component {
             width: 0,
             height: 0
         }
+
+        this.renderedImage = {
+            wdith: 0,
+            height: 0
+        }
     }
 
     async componentDidMount() {
@@ -212,6 +217,8 @@ class ExpoImageManipulator extends Component {
         }
         this.selectionRect.x = cropOverlayObj.left;
         this.selectionRect.y = cropOverlayObj.top - renderedImageY;
+        this.renderedImage.height = renderedImageHeight;
+        this.renderedImage.width = renderedImageWidth;
         return intersectAreaObj
     }
 
@@ -357,7 +364,7 @@ class ExpoImageManipulator extends Component {
                                         <TouchableOpacity onPress={() => this.onFlipImage('horizontal')} style={{marginLeft: 10, width: 32, height: 32, alignItems: 'center', justifyContent: 'center'}}>
                                             <Image source={require('../assets/flip-horizontal.png')} style={{width: 24, height: 24}}></Image>
                                         </TouchableOpacity>
-                                        <TouchableOpacity onPress={() => {onPictureChoosed({ uri, base64, selectionRect }); this.onToggleModal()}} style={{marginLeft: 10, width: 60, height: 32, alignItems: 'center', justifyContent: 'center'}}>
+                                        <TouchableOpacity onPress={() => {onPictureChoosed({ uri, base64, selectionRect, renderedImage }); this.onToggleModal()}} style={{marginLeft: 10, width: 60, height: 32, alignItems: 'center', justifyContent: 'center'}}>
                                             <Text style={{fontWeight: '500', color: 'white', fontSize: 18}}>{'DONE'}</Text>                                
                                         </TouchableOpacity>
                                     </View>
@@ -423,7 +430,7 @@ class ExpoImageManipulator extends Component {
 export default ExpoImageManipulator
 
 ExpoImageManipulator.defaultProps = {
-    onPictureChoosed: ({ uri, base64, selectionRect }) => console.log('URI:', uri, base64),
+    onPictureChoosed: ({ uri, base64, selectionRect, renderedImage }) => console.log('URI:', uri, base64),
     btnTexts: {
         crop: 'Crop',
         rotate: 'Rotate',
