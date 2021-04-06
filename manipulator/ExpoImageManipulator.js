@@ -217,8 +217,8 @@ class ExpoImageManipulator extends Component {
                 height: 0
             }
         }
-        this.selectionRect.x = cropOverlayObj.left;
-        this.selectionRect.y = cropOverlayObj.top - renderedImageY;
+        this.selectionRect.x = intersectAreaObj.originX;
+        this.selectionRect.y = intersectAreaObj.originY;
 
         return intersectAreaObj
     }
