@@ -123,8 +123,8 @@ class ExpoImageManipulator extends Component {
                 }
                 const { uri: uriCroped, base64, width: croppedWidth, height: croppedHeight } = await this.crop(cropObj, uriToCrop)
 
-                this.actualSize.width = this.selectionRect.width = croppedWidth
-                this.actualSize.height = this.selectionRect.height = croppedHeight
+                this.actualSize.width = croppedWidth
+                this.actualSize.height = croppedHeight
                 
                 this.setState({
                     uri: uriCroped, base64, cropMode: false, processing: false,
@@ -219,6 +219,8 @@ class ExpoImageManipulator extends Component {
         }
         this.selectionRect.x = intersectAreaObj.originX;
         this.selectionRect.y = intersectAreaObj.originY;
+        this.selectionRect.width = intersectAreaObj.width;
+        this.selectionRect.height = intersectAreaObj.height;
 
         return intersectAreaObj
     }
